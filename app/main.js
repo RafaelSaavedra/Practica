@@ -1,6 +1,6 @@
 const loadInitialTemplate = () => {
     const template = `
-    <h1>Usuarios</h1>
+    <h1> The Rock-paper-scissors-spock-lizard API</h1>
     <form id= "user-form">
         <div>
             <label>Name</label>
@@ -45,6 +45,8 @@ const addFormListener = () => {
     userForm.onsubmit = async (e) => {
     e.preventDefault() 
     const formData = new FormData(userForm) 
+    //console.log(formData.get('name')) AQUI OBTIENES NOMBRE
+    //console.log(formData.get('option')) AQUI ONTIENES OPCION
     const data = Object.fromEntries(formData.entries())
     await fetch('/users', {
        method : 'POST',
