@@ -3,12 +3,12 @@ const loadInitialTemplate = () => {
     <h1>Usuarios</h1>
     <form id= "user-form">
         <div>
-            <label>Nombre</label>
+            <label>Name</label>
             <Input name = "name" />
         </div>
         <div>
-            <label>Apellido</label>
-            <Input name = "lastname" />
+            <label>Option</label>
+            <Input name = "option" />
         </div>
         <button type ="submit">Enviar</button>
     </form>
@@ -23,7 +23,7 @@ const getUsers = async () => {
     const users = await response.json()
     const template = user => `
     <li>
-        ${user.name} ${user.lastname} <button data-id="${user._id}">Eliminar</button>
+        ${user.name} ${user.option} <button data-id="${user._id}">Eliminar</button>
     </li>
     `
 
