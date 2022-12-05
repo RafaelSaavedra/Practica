@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 const { stringify } = require('querystring')
 
-let player = 'scissors'
+let player = ''
+player = opcion
 
 let rand = Math.floor(Math.random()*11)
 if(rand < 3) computer = 'rock'
