@@ -16,8 +16,8 @@ const crear = async () => {
 //crear()
 
 const buscarTodo = async () => {
-    const users = await User.find()
-    console.log (users)
+    const play = await User.find()
+    console.log (play)
 }
 
 //buscarTodo()

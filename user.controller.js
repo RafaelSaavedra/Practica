@@ -8,8 +8,8 @@ const User = {
         res.status(200).send(user)
     },
     list: async (req,res) => {
-        const users = await Users.find()
-        res.status(200).send(users)
+        const play = await Users.find()
+        res.status(200).send(play)
     },
     create: async (req,res) => {
         //console.log(req.body)

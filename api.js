@@ -7,12 +7,12 @@ app.use(express.json())
 
 mongoose.connect('mongodb+srv://Rafael:15Anestesiologia20@cluster0.rnudzg3.mongodb.net/mipractica?retryWrites=true&w=majority')
 
-app.get('/users', user.list)
-app.post('/users', user.create)
-app.get('/users/:id', user.get)
-app.put('/users/:id', user.update)  
-app.patch('/users/:id', user.update) 
-app.delete('/users/:id', user.destroy)
+app.get('/play', user.list)
+app.post('/play', user.create)
+app.get('/play/:id', user.get)
+app.put('/play/:id', user.update)  
+app.patch('/play/:id', user.update) 
+app.delete('/play/:id', user.destroy)
 
 app.use(express.static('app'))
 
