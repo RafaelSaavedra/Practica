@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const play = require('./play.controller')
+const user = require('./user.controller')
 mongoose.connect('mongodb+srv://Rafael:15Anestesiologia20@cluster0.rnudzg3.mongodb.net/mipractica?retryWrites=true&w=majority')
 
 const User = mongoose.model('User', {
@@ -8,8 +8,8 @@ const User = mongoose.model('User', {
 })
 
 const crear = async () => {
-    const play = new User ({username: 'chancho feliz', edad: 1105})
-    const savedUser = await play.save()
+    const user = new User ({username: 'chancho feliz', edad: 1105})
+    const savedUser = await user.save()
     console.log(savedUser)
 }
 
@@ -23,33 +23,33 @@ const buscarTodo = async () => {
 //buscarTodo()
 
 const buscar = async () => {
-    const play = await User.find({ username: 'chanchooooo felizzzz'})
-    console.log(play)
+    const user = await User.find({ username: 'chanchooooo felizzzz'})
+    console.log(user)
 }
 
 //buscar()
 
 const buscarUno = async () => {
-    const play = await User.findOne({username: 'chanchooooo felizzzz'})
-    console.log(play)
+    const user = await User.findOne({username: 'chanchooooo felizzzz'})
+    console.log(user)
 }
 
 //buscarUno()
 
 const actualizar = async () => {
-    const play = await User.findOne({ username: 'chanchooooo felizzzz'})
-    console.log(play)
-    play.edad = 30
-    await play.save()
+    const user = await User.findOne({ username: 'chanchooooo felizzzz'})
+    console.log(user)
+    user.edad = 30
+    await user.save()
 }
 
 //actualizar()
 
 const eliminar = async () => {
-    const play = await User.findOne({ username:'chanchito triste'})
-    console.log(play)
-    if (play){
-        await play.remove()
+    const user = await User.findOne({ username:'chanchito triste'})
+    console.log(user)
+    if (user){
+        await user.remove()
     }
 }
 

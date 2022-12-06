@@ -30,19 +30,19 @@ const getUsers = async () => {
     const response = await fetch('/users')
     const users = await response.json()
     //console.log(users) AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
-    const template = play => `
+    const template = user => `
     <li>
-        ${play.name} ${play.option} ${play.result}<button data-id="${play._id}">Eliminar</button>
+        ${user.name} ${user.option} ${user.result}<button data-id="${user._id}">Eliminar</button>
     </li>
     `
 
     const userList = document.getElementById('user-list')
-    userList.innerHTML = users.map( play => template(play)).join('')
+    userList.innerHTML = users.map( user => template(user)).join('')
 
-    users.forEach(play => {
-        const userNode = document.querySelector(`[data-id="${play._id}"]`)
+    users.forEach(user => {
+        const userNode = document.querySelector(`[data-id="${user._id}"]`)
         userNode.onclick = async e => {
-            await fetch(`/users/${play._id}`, {
+            await fetch(`/users/${user._id}`, {
                 method: 'DELETE',
             })
             userNode.parentNode.remove()
@@ -63,10 +63,10 @@ let player = formData.get('option')
 
 let rand = Math.floor(Math.random()*11)
 if(rand < 3) computer = 'rock'
-    else if( 3<= rand <5) computer = 'paper'
-    else if( 5<= rand <7) computer = 'scissors'
-    else if( 7<= rand <9) computer = 'spock'
-    else if( 9<= rand <11) computer = 'lizzard'
+    else if( rand <5) computer = 'paper'
+    else if( rand <7) computer = 'scissors'
+    else if( rand <9) computer = 'spock'
+    else if( rand <11) computer = 'lizzard'
 
 
 if(player =='rock' && (computer == 'paper' || computer == 'spock')
@@ -84,12 +84,12 @@ else if(player == computer)
 
 {alert ('player :' + player +', Computer :' + computer +", Result : Draw, try again.")}
 
-/*else if(player !== ('rock' || 'paper' ||'scissors' || 'spock' || 'lizzard'))
+else if(player !== ('rock' || 'paper' ||'scissors' || 'spock' || 'lizzard'))
 {
 
 alert( 'no MAMEIS : no existe esa opción')
 
-}*/
+}
 
 else
 

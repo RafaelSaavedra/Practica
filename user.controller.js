@@ -4,8 +4,8 @@ const Users = require('./User')
 const User = {
     get: async (req,res) => {
         const{ id } = req.params
-        const play = await Users.findOne({_id: id})
-        res.status(200).send(play)
+        const user = await Users.findOne({_id: id})
+        res.status(200).send(user)
     },
     list: async (req,res) => {
         const users = await Users.find()
@@ -13,8 +13,8 @@ const User = {
     },
     create: async (req,res) => {
         //console.log(req.body)
-        const play = new Users(req.body)
-        const savedUser = await play.save()
+        const user = new Users(req.body)
+        const savedUser = await user.save()
         res.status(201).send(savedUser._id)
     },
     update: async (req,res) => {
@@ -26,9 +26,9 @@ const User = {
     },
     destroy: async (req,res) => {
         const {id} =req.params
-        const play = await Users.findOne({ _id: id})
-        if(play){
-            play.remove()
+        const user = await Users.findOne({ _id: id})
+        if(user){
+            user.remove()
         }
         res.sendStatus(204)
     }

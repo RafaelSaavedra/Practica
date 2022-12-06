@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+const { stringify } = require('querystring')
 
 let player = ''
 player = opcion

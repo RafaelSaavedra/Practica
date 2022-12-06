@@ -1,18 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const play = require('./user.controller')
+const user = require('./user.controller')
 const app = express()
 const port = 3000
 app.use(express.json())
 
 mongoose.connect('mongodb+srv://Rafael:15Anestesiologia20@cluster0.rnudzg3.mongodb.net/mipractica?retryWrites=true&w=majority')
 
-app.get('/users', play.list)
-app.post('/users', play.create)
-app.get('/users/:id', play.get)
-app.put('/users/:id', play.update)  
-app.patch('/users/:id', play.update) 
-app.delete('/users/:id', play.destroy)
+app.get('/users', user.list)
+app.post('/users', user.create)
+app.get('/users/:id', user.get)
+app.put('/users/:id', user.update)  
+app.patch('/users/:id', user.update) 
+app.delete('/users/:id', user.destroy)
 
 app.use(express.static('app'))
 
