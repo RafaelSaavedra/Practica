@@ -27,9 +27,9 @@ const loadInitialTemplate = () => {
 }
 
 const getUsers = async () => {
-    const response = await fetch('/users')
-    const users = await response.json()
-    //console.log(users) AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+    const response = await fetch('/play')
+    const play = await response.json()
+    //console.log(play) AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     const template = user => `
     <li>
         ${user.name} ${user.option} ${user.result}<button data-id="${user._id}">Eliminar</button>
@@ -37,12 +37,12 @@ const getUsers = async () => {
     `
 
     const userList = document.getElementById('user-list')
-    userList.innerHTML = users.map( user => template(user)).join('')
+    userList.innerHTML = play.map( user => template(user)).join('')
 
-    users.forEach(user => {
+    play.forEach(user => {
         const userNode = document.querySelector(`[data-id="${user._id}"]`)
         userNode.onclick = async e => {
-            await fetch(`/users/${user._id}`, {
+            await fetch(`/play/${user._id}`, {
                 method: 'DELETE',
             })
             userNode.parentNode.remove()
@@ -100,7 +100,7 @@ else
 
     const data = Object.fromEntries(formData.entries())
     console.log(data) //OBJETO JSON CON NOMBRE Y OPCION
-    await fetch('/users', {
+    await fetch('/play', {
        method : 'POST',
        body: JSON.stringify(data),
        headers :{
