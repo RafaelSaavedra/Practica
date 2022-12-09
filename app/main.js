@@ -11,6 +11,10 @@ const loadInitialTemplate = () => {
             <label>Option</label>
             <Input name = "option" />
         </div>
+        <div>
+            <label>Result</label>
+            <Input name = "result" />
+        </div>
 
         <button type ="submit">Enviar</button>
 
@@ -28,7 +32,7 @@ const getUsers = async () => {
     console.log(play) //AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     const template = user => `
     <li>
-        ${user.name} ${user.option} <button data-id="${user._id}">Eliminar</button>
+        ${user.name} ${user.option} ${user.result}<button data-id="${user._id}">Eliminar</button>
     </li>
     `
 
@@ -46,14 +50,14 @@ const getUsers = async () => {
         }
     })
 }
-/*
-const getResults = async () => {
-    const result = await fetch('/play')
-    const play = await result.json()
-    //console.log(play) //AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+
+const getUsers1 = async () => {
+    const response = await fetch('/play')
+    const play = await response.json()
+    console.log(play) //AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     const template = user => `
     <li>
-        ${result.jugador} ${result.computadora} ${result.resultado}<button data-id="${user._id}">Eliminar</button>
+        ${user.name} ${user.option} ${user.result}<button data-id="${user._id}">Eliminar</button>
     </li>
     `
 
@@ -71,7 +75,7 @@ const getResults = async () => {
         }
     })
 }
-*/
+
 
 
 const addFormListener = () => {
@@ -91,7 +95,7 @@ if(rand < 3) computer = 'rock'
     else if( rand <7) computer = 'scissors'
     else if( rand <9) computer = 'spock'
     else if( rand <11) computer = 'lizzard'
-//console.log('La elección de computadora es :'+computer)//AQUI VES LA OPCIÓN DE COMPUTER
+
 
 if(player =='rock' && (computer == 'paper' || computer == 'spock')
 ||player == 'paper' && (computer == 'scissors' || computer == 'lizzard')
@@ -100,32 +104,29 @@ if(player =='rock' && (computer == 'paper' || computer == 'spock')
 ||player == 'lizzard' && (computer == 'scissors'|| computer == 'rock'))
 
 {
-   
-    alert('player :' + player +', Computer :' + computer +", Result : Computer wins.")
-
-   // let result = 
-
-   // getUsers1()
+    alert ('player :' + player +', Computer :' + computer +", Result : Computer wins.")
+    
+    getUsers1()
 }
 
 else if(player == computer)
 
 {alert ('player :' + player +', Computer :' + computer +", Result : Draw, try again.")
-    //getUsers1()
+    getUsers1()
 }
 
 else if(player !== ('rock' || 'paper' ||'scissors' || 'spock' || 'lizzard'))
 {
 
 alert( 'no MAMEIS : no existe esa opción')
-//getUsers1()
+getUsers1()
 
 }
 
 else
 
 {alert ('player :' + player +', Computer :' + computer +", Result : Player wins.")
-//getUsers1()
+getUsers1()
 }
     
    
@@ -149,5 +150,5 @@ window.onload = () => {
 loadInitialTemplate ()
 addFormListener()
 getUsers()
-//getUsers1()
+getUsers1()
 }
