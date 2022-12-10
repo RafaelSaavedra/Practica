@@ -12,6 +12,10 @@ const loadInitialTemplate = () => {
             <Input name = "option" />
         </div>
         <div>
+            <label>Computer</label>
+            <Input name = "computer" />
+        </div>
+        <div>
             <label>Result</label>
             <Input name = "result" />
         </div>
@@ -26,13 +30,15 @@ const loadInitialTemplate = () => {
     body.innerHTML = template
 }
 
+
+
 const getUsers = async () => {
     const response = await fetch('/play')
     const play = await response.json()
-    //console.log(play) AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+    console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     const template = user => `
     <li>
-        ${user.name} ${user.option} ${user.result}<button data-id="${user._id}">Eliminar</button>
+        ${user.name} ${user.option} ${user.computer} ${user.result}<button data-id="${user._id}">Eliminar</button>
     </li>
     `
 
@@ -54,7 +60,7 @@ const addFormListener = () => {
     const userForm = document.getElementById('user-form')
     userForm.onsubmit = async (e) => {
     e.preventDefault() 
-    const formData = new FormData(userForm) 
+    const formData = new FormData(userForm) //formmData va a captar todos los datos del formulario que tiene la id:"user-form"
     //console.log(formData.get('name')) AQUI OBTIENES NOMBRE
     //console.log(formData.get('option')) AQUI ONTIENES OPCION
 
@@ -116,4 +122,5 @@ window.onload = () => {
 loadInitialTemplate ()
 addFormListener()
 getUsers()
+
 }

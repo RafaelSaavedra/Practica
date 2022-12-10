@@ -53,4 +53,3 @@ const eliminar = async () => {
     }
 }
 
-//eliminar()
