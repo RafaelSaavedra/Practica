@@ -32,7 +32,7 @@ const getUsers = async () => {
     console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     const template = user => `
     <li>
-        ${user.name} ${user.option} ${user.computer} ${user.result}<button data-id="${user._id}">Eliminar</button>
+        ${user.name} Escogió :  ${user.option} <button data-id="${user._id}">Eliminar</button>
     </li>
     `
 
@@ -57,6 +57,8 @@ const getResults = async () => {
     console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     //let user = play
     play.computer = "tora tora"
+    //console.log("¿está leyendo aqui?", computer)
+    //console.log("¿esta leyendo aqui?" , player)
     const template = user => `
     <li>
        Player name :  ${user.name} <br/> Player option : ${user.option} <br/> Computer option : ${play.computer} <br/> Result : ${user.result} <br/> <button data-id="${user._id}">Eliminar</button><br/><br/>
@@ -96,7 +98,7 @@ if(rand < 3) computer = 'rock'
     else if( rand <9) computer = 'spock'
     else if( rand <11) computer = 'lizzard'
 
-    console.log(computer)
+    console.log("La computadora escogió : " ,computer)
 
 if(player =='rock' && (computer == 'paper' || computer == 'spock')
 ||player == 'paper' && (computer == 'scissors' || computer == 'lizzard')
