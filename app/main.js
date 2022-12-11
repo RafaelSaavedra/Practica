@@ -4,21 +4,15 @@ const loadInitialTemplate = () => {
     <h1> The Rock-paper-scissors-spock-lizard API</h1>
     <form id= "user-form">
         <div>
-            <label>Name</label>
+            <label>Player´s Name :  </label>
             <Input name = "name" />
         </div>
+        <br/>
         <div>
-            <label>Option</label>
+            <label>Player´s Option : </label>
             <Input name = "option" />
         </div>
-        <div>
-            <label>Computer</label>
-            <Input name = "computer" />
-        </div>
-        <div>
-            <label>Result</label>
-            <Input name = "result" />
-        </div>
+       <br/>
 
         <button type ="submit">Enviar</button>
 
@@ -56,6 +50,33 @@ const getUsers = async () => {
         }
     })
 }
+
+const getResults = async () => {
+    const response = await fetch('/play')
+    const play = await response.json()
+    console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+    //let user = play
+    play.computer = "tora tora"
+    const template = user => `
+    <li>
+       Player name :  ${user.name} <br/> Player option : ${user.option} <br/> Computer option : ${play.computer} <br/> Result : ${user.result} <br/> <button data-id="${user._id}">Eliminar</button><br/><br/>
+    </li>
+    `
+
+    const userList = document.getElementById('result')
+    userList.innerHTML = play.map( user => template(user)).join('')
+
+    play.forEach(user => {
+        const userNode = document.querySelector(`[data-id="${user._id}"]`)
+        userNode.onclick = async e => {
+            await fetch(`/play/${user._id}`, {
+                method: 'DELETE',
+            })
+            userNode.parentNode.remove()
+            //alert('Eliminado con éxito')
+        }
+    })
+}
 const addFormListener = () => {
     const userForm = document.getElementById('user-form')
     userForm.onsubmit = async (e) => {
@@ -65,6 +86,7 @@ const addFormListener = () => {
     //console.log(formData.get('option')) AQUI ONTIENES OPCION
 
 let player = formData.get('option')
+console.log("El jugador escogió :",player)
 //let computer = formData.get('result')
 
 let rand = Math.floor(Math.random()*11)
@@ -74,6 +96,7 @@ if(rand < 3) computer = 'rock'
     else if( rand <9) computer = 'spock'
     else if( rand <11) computer = 'lizzard'
 
+    console.log(computer)
 
 if(player =='rock' && (computer == 'paper' || computer == 'spock')
 ||player == 'paper' && (computer == 'scissors' || computer == 'lizzard')
@@ -122,5 +145,15 @@ window.onload = () => {
 loadInitialTemplate ()
 addFormListener()
 getUsers()
-
+getResults()
 }
+/*
+<div>
+<label>Computer</label>
+<Input name = "computer" />
+</div>
+<div>
+<label>Result</label>
+<Input name = "result" />
+</div>
+*/
