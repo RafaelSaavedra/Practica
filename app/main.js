@@ -23,7 +23,11 @@ const loadInitialTemplate = () => {
     const body = document.getElementsByTagName('body')[0]
     body.innerHTML = template
 }
-
+/*
+let player = ""
+let computer = ""
+let result = ""
+*/
 
 
 const getUsers = async () => {
@@ -50,13 +54,33 @@ const getUsers = async () => {
         }
     })
 }
+/*
+function getResults  (player, computer, result)  {
+    const response =  fetch('/play')
+    const play =  response.json
+ 
+    //console.log("Sigue funcionando esto?",play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+    //let user = play
+    play.computer = "tora tora"
+    //console.log("¿está leyendo aqui?", computer)
+    //console.log("¿esta leyendo aqui?" , player)
+    const template = user => `
+    <li>
+       Player name :  ${user.name} <br/> Player option : ${user.option} <br/> Computer option : ${play.computer} <br/> Result : ${user.result} <br/> <button data-id="${user._id}">Eliminar</button><br/><br/>
+    </li>
+    `
+    const userList = document.getElementById('result')
+    userList.innerHTML = play
+
+}
+
 
 const getResults = async () => {
     const response = await fetch('/play')
     const play = await response.json()
     console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     //let user = play
-    play.computer = "tora tora"
+    //play.computer = "Tora Tora"
     //console.log("¿está leyendo aqui?", computer)
     //console.log("¿esta leyendo aqui?" , player)
     const template = user => `
@@ -79,17 +103,21 @@ const getResults = async () => {
         }
     })
 }
+*/
+
 const addFormListener = () => {
     const userForm = document.getElementById('user-form')
     userForm.onsubmit = async (e) => {
     e.preventDefault() 
     const formData = new FormData(userForm) //formmData va a captar todos los datos del formulario que tiene la id:"user-form"
-    //console.log(formData.get('name')) AQUI OBTIENES NOMBRE
-    //console.log(formData.get('option')) AQUI ONTIENES OPCION
+    console.log("captando de user-form : "+formData.get('name'))// AQUI OBTIENES NOMBRE
+    console.log("captando de user-form : "+formData.get('option')) //AQUI ONTIENES OPCION
 
 let player = formData.get('option')
 console.log("El jugador escogió :",player)
 //let computer = formData.get('result')
+
+function resultado (player){
 
 let rand = Math.floor(Math.random()*11)
 if(rand < 3) computer = 'rock'
@@ -109,6 +137,10 @@ if(player =='rock' && (computer == 'paper' || computer == 'spock')
 {
     alert ('player :' + player +', Computer :' + computer +", Result : Computer wins.")
 
+
+
+
+    
 }
 
 else if(player == computer)
@@ -125,9 +157,12 @@ alert( 'no MAMEIS : no existe esa opción')
 else
 
 {alert ('player :' + player +', Computer :' + computer +", Result : Player wins.")}
-    
-   
 
+
+}
+
+resultado(player)
+   
 
     const data = Object.fromEntries(formData.entries())
     console.log(data) //OBJETO JSON CON NOMBRE Y OPCION
@@ -143,11 +178,42 @@ else
     }
 }
 
+/*
+const getResults = async () => {
+    const response = await fetch('/play')
+    const play = await response.json()
+    console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+    //let user = play
+    play.computer = "tora tora"
+    console.log("¿está leyendo aqui?", computer)
+    //console.log("¿esta leyendo aqui?" , player)
+    const template = user => `
+    <li>
+       Player name :  ${user.name} <br/> Player option : ${user.option} <br/> Computer option : ${play.computer} <br/> Result : ${user.result} <br/> <button data-id="${user._id}">Eliminar</button><br/><br/>
+    </li>
+    `
+
+    const userList = document.getElementById('result')
+    userList.innerHTML = play.map( user => template(user)).join('')
+
+    play.forEach(user => {
+        const userNode = document.querySelector(`[data-id="${user._id}"]`)
+        userNode.onclick = async e => {
+            await fetch(`/play/${user._id}`, {
+                method: 'DELETE',
+            })
+            userNode.parentNode.remove()
+            //alert('Eliminado con éxito')
+        }
+    })
+}
+*/
+
+
 window.onload = () => {
 loadInitialTemplate ()
 addFormListener()
 getUsers()
-getResults()
 }
 /*
 <div>

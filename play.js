@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
-const { stringify } = require('querystring')
+//const mongoose = require('mongoose')
+//const { stringify } = require('querystring')
 
-let player = ''
+let player = 'rock'
 //player = opcion
-
+function resultado(player){
 let rand = Math.floor(Math.random()*11)
 if(rand < 3) computer = 'rock'
     else if( rand <5) computer = 'paper'
@@ -28,6 +28,8 @@ else
 
 {console.log ('player :' + player +', Computer :' + computer +", Result : Player wins.")}
     
+}
+resultado(player)
 
 /*
 -----_SEGUNDA PRUEBA_----
