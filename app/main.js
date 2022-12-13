@@ -19,21 +19,18 @@ const loadInitialTemplate = () => {
     </form>
     <ul id="user-list"></ul>
     <ul id="result"></ul>
+    <ul id="prueba"></ul>
     `
     const body = document.getElementsByTagName('body')[0]
     body.innerHTML = template
 }
-/*
-let player = ""
-let computer = ""
-let result = ""
-*/
+
 
 
 const getUsers = async () => {
     const response = await fetch('/play')
     const play = await response.json()
-    console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+    console.log("de getusers: nombre, opción e id",play)// De getUsers AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     const template = user => `
     <li>
         ${user.name} Escogió :  ${user.option} <button data-id="${user._id}">Eliminar</button>
@@ -54,38 +51,48 @@ const getUsers = async () => {
         }
     })
 }
-/*
-function getResults  (player, computer, result)  {
-    const response =  fetch('/play')
-    const play =  response.json
- 
-    //console.log("Sigue funcionando esto?",play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
-    //let user = play
-    play.computer = "tora tora"
-    //console.log("¿está leyendo aqui?", computer)
-    //console.log("¿esta leyendo aqui?" , player)
-    const template = user => `
+
+
+    let nombre = "name"
+    let opcion = "option"
+    let computadora = "computer"
+    let resultaado = "result"
+
+    let pley = {name: nombre, option: opcion, computer: computadora, result: resultaado}
+
+const getUsuarios = () => {
+    console.log("de get usuarios**: nombre, opción y id", pley)// De getUsuarios  
+    pley.computer = 'Resultados : TARO , TARO'
+    //console.log(pley.computer)
+    pley.option = "melatonina"
+    const template = `
     <li>
-       Player name :  ${user.name} <br/> Player option : ${user.option} <br/> Computer option : ${play.computer} <br/> Result : ${user.result} <br/> <button data-id="${user._id}">Eliminar</button><br/><br/>
+        Nombre usuario : ${pley.name}<br/> 
+        Escogió prueba :  ${pley.option}<br/>
+        Computadora prueba : ${pley.computer}<br/>
+        Resultado prueba : ${pley.result}<br/>
+        <button data-id="${pley._id}">Eliminar</button>
     </li>
     `
-    const userList = document.getElementById('result')
-    userList.innerHTML = play
-
+    const userList = document.getElementById('prueba')
+    userList.innerHTML = template
 }
-
 
 const getResults = async () => {
     const response = await fetch('/play')
     const play = await response.json()
-    console.log(play)// AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
+    console.log("de getResults: nombre, opción e id", play)// De getResults AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     //let user = play
-    //play.computer = "Tora Tora"
-    //console.log("¿está leyendo aqui?", computer)
-    //console.log("¿esta leyendo aqui?" , player)
+    play.computer = "Results : Tora Tora"
+    console.log("¿está leyendo aqui?", computadora)
+    console.log("¿esta leyendo aqui?" , nombre)
     const template = user => `
     <li>
-       Player name :  ${user.name} <br/> Player option : ${user.option} <br/> Computer option : ${play.computer} <br/> Result : ${user.result} <br/> <button data-id="${user._id}">Eliminar</button><br/><br/>
+       Player name :  ${user.name} <br/>
+       Player option : ${user.option} <br/> 
+       Computer option : ${play.computer} <br/> 
+       Result : ${user.result} <br/> 
+       <button data-id="${user._id}">Eliminar</button><br/><br/>
     </li>
     `
 
@@ -103,7 +110,7 @@ const getResults = async () => {
         }
     })
 }
-*/
+
 
 const addFormListener = () => {
     const userForm = document.getElementById('user-form')
@@ -115,7 +122,6 @@ const addFormListener = () => {
 
 let player = formData.get('option')
 console.log("El jugador escogió :",player)
-//let computer = formData.get('result')
 
 function resultado (player){
 
@@ -140,7 +146,7 @@ if(player =='rock' && (computer == 'paper' || computer == 'spock')
 
 
 
-    
+
 }
 
 else if(player == computer)
@@ -165,7 +171,7 @@ resultado(player)
    
 
     const data = Object.fromEntries(formData.entries())
-    console.log(data) //OBJETO JSON CON NOMBRE Y OPCION
+    console.log("Justo antes de post JSON con nombre y opción",data) //Justo antes de Post : OBJETO JSON CON NOMBRE Y OPCION
     await fetch('/play', {
        method : 'POST',
        body: JSON.stringify(data),
@@ -177,6 +183,32 @@ resultado(player)
     getUsers()
     }
 }
+
+
+
+window.onload = () => {
+loadInitialTemplate ()
+addFormListener()
+getUsers()
+getResults()
+getUsuarios()
+}
+
+
+
+
+
+
+/*
+<div>
+<label>Computer</label>
+<Input name = "computer" />
+</div>
+<div>
+<label>Result</label>
+<Input name = "result" />
+</div>
+*/
 
 /*
 const getResults = async () => {
@@ -207,21 +239,4 @@ const getResults = async () => {
         }
     })
 }
-*/
-
-
-window.onload = () => {
-loadInitialTemplate ()
-addFormListener()
-getUsers()
-}
-/*
-<div>
-<label>Computer</label>
-<Input name = "computer" />
-</div>
-<div>
-<label>Result</label>
-<Input name = "result" />
-</div>
 */
