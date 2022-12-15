@@ -53,24 +53,26 @@ const getUsers = async () => {
 }
 
 
-    let nombre = "name"
-    let opcion = "option"
-    let computadora = "computer"
-    let resultaado = "result"
+    let nombre = ""
+    let opcion = ""
+    let computadora = ""
+    let resultaado = ""
 
-    let pley = {name: nombre, option: opcion, computer: computadora, result: resultaado}
+    let pley = {name: nombre, player: opcion, computer: computadora, result: resultaado}
 
 const getUsuarios = () => {
     console.log("de get usuarios**: nombre, opción y id", pley)// De getUsuarios  
-    pley.computer = 'Resultados : TARO , TARO'
-    //console.log(pley.computer)
-    pley.option = "melatonina"
+    //pley.computer = 'Resultados : TARO , TARO'
+    console.log(pley.computer)
+
+    console.log("¿getUsuarios está leyendo aqui?", computadora)
+    console.log("¿getUsuarios esta leyendo aqui?" , nombre)
     const template = `
     <li>
         Nombre usuario : ${pley.name}<br/> 
-        Escogió prueba :  ${pley.option}<br/>
-        Computadora prueba : ${pley.computer}<br/>
-        Resultado prueba : ${pley.result}<br/>
+        Usuario escogió :  ${pley.player}<br/>
+        Computadora escogió : ${pley.computer}<br/>
+        Resultado del juego : ${pley.result}<br/>
         <button data-id="${pley._id}">Eliminar</button>
     </li>
     `
@@ -121,9 +123,14 @@ const addFormListener = () => {
     console.log("captando de user-form : "+formData.get('option')) //AQUI ONTIENES OPCION
 
 let player = formData.get('option')
-console.log("El jugador escogió :",player)
+pley.player= player
+pley.name= formData.get('name')
 
-function resultado (player){
+//console.log("El jugador escogió :",player)
+//console.log ("getUsuarios recibió ?",pley.player = player)
+//alert (pley.JSON)
+
+function resultado (){
 
 let rand = Math.floor(Math.random()*11)
 if(rand < 3) computer = 'rock'
@@ -132,7 +139,10 @@ if(rand < 3) computer = 'rock'
     else if( rand <9) computer = 'spock'
     else if( rand <11) computer = 'lizzard'
 
-    console.log("La computadora escogió : " ,computer)
+    pley.computer = computer
+   // console.log("La computadora escogió : " ,computer)
+    //console.log("getUsuarios recibió ? : ", pley.computer)
+   // alert (pley.innerText)
 
 if(player =='rock' && (computer == 'paper' || computer == 'spock')
 ||player == 'paper' && (computer == 'scissors' || computer == 'lizzard')
@@ -142,32 +152,57 @@ if(player =='rock' && (computer == 'paper' || computer == 'spock')
 
 {
     alert ('player :' + player +', Computer :' + computer +", Result : Computer wins.")
-
-
-
-
-
+   console.log( "en el juego :",pley.player = player)
+    console.log("en el juego :",pley.computer = computer)
+    pley.result = "Computer wins"
+    alert(pley.result = "Computer wins")
+    alert("computer wins")
+    getUsuarios()
+    alert(pley)
+    console.log(pley)
 }
 
 else if(player == computer)
 
-{alert ('player :' + player +', Computer :' + computer +", Result : Draw, try again.")}
 
+
+{
+    alert ('player :' + player +', Computer :' + computer +", Result : Draw, try again.")
+
+    pley.result = "Draw, try again"
+    alert(pley.result = "Draw, try again")
+    alert("try again")
+    getUsuarios()
+    alert(pley)
+    console.log(pley)
+}
+/*
 else if(player !== ('rock' || 'paper' ||'scissors' || 'spock' || 'lizzard'))
 {
 
 alert( 'no MAMEIS : no existe esa opción')
 
 }
+*/
 
 else
 
-{alert ('player :' + player +', Computer :' + computer +", Result : Player wins.")}
+{
+    alert ('player :' + player +', Computer :' + computer +", Result : Player wins.")
+
+    pley.result = "Player wins"
+    alert(pley.result="player wins")
+    getUsuarios()
+    alert(pley)
+    console.log(pley)
+}
 
 
 }
 
-resultado(player)
+console.log("Aquì llama a resultado: ",resultado())
+
+
    
 
     const data = Object.fromEntries(formData.entries())
@@ -192,6 +227,7 @@ addFormListener()
 getUsers()
 getResults()
 getUsuarios()
+
 }
 
 

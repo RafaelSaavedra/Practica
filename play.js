@@ -1,9 +1,15 @@
 //const mongoose = require('mongoose')
 //const { stringify } = require('querystring')
+let nombre = "piolin"
+let opcion = "piolon"
+let computadora = "piolun"
+let resultaado = "piolan"
 
-let player = 'rock'
-//player = opcion
-function resultado(player){
+let pley = {name: nombre, player: opcion, computer: computadora, result: resultaado}
+
+let player = 'lizzard'
+//player = 'opcion'
+function resultado(){
 let rand = Math.floor(Math.random()*11)
 if(rand < 3) computer = 'rock'
     else if( rand <5) computer = 'paper'
@@ -11,6 +17,8 @@ if(rand < 3) computer = 'rock'
     else if( rand <9) computer = 'spock'
     else if( rand <11) computer = 'lizzard'
 
+pley.computer = computer
+pley.player = player
 
 if(player =='rock' && (computer == 'paper' || computer == 'spock')
 ||player == 'paper' && (computer == 'scissors' || computer == 'lizzard')
@@ -18,18 +26,27 @@ if(player =='rock' && (computer == 'paper' || computer == 'spock')
 ||player == 'spock' && (computer == 'paper' || computer == 'lizzard')
 ||player == 'lizzard' && (computer == 'scissors'|| computer == 'rock'))
 
-{console.log ('player :' + player +', Computer :' + computer +", Result : Computer wins.")}
+{console.log ('player :' + player +', Computer :' + computer +", Result : Computer wins.")
+pley.result = "Computer wins"
+console.log(pley)}
+
 
 else if(player == computer)
 
-{console.log ('player :' + player +', Computer :' + computer +", Result : Draw, try again.")}
+{console.log ('player :' + player +', Computer :' + computer +", Result : Draw, try again.")
+pley.result = "Draw, try again"
+console.log(pley)}
 
 else
 
-{console.log ('player :' + player +', Computer :' + computer +", Result : Player wins.")}
+{console.log ('player :' + player +', Computer :' + computer +", Result : Player wins.")
+pley.result = "Player wins"
+console.log(pley)}
+
     
 }
-resultado(player)
+
+resultado()
 
 /*
 -----_SEGUNDA PRUEBA_----
