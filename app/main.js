@@ -4,7 +4,7 @@ const loadInitialTemplate = () => {
     <h1> The Rock-paper-scissors-spock-lizard API</h1>
     <form id= "user-form">
         <div>
-            <label>Player´s Name :  </label>
+            <label>Players´ Name :  </label>
             <Input name = "name" />
         </div>
         <br/>
@@ -123,7 +123,7 @@ const addFormListener = () => {
     console.log("captando de user-form : "+formData.get('option')) //AQUI ONTIENES OPCION
 
 let player = formData.get('option')
-pley.player= player
+pley.player= formData.get('option')
 pley.name= formData.get('name')
 
 //console.log("El jugador escogió :",player)
