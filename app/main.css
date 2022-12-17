@@ -1,0 +1,66 @@
+body{
+    background-color: lightsteelblue;
+    color: rgb(67, 19, 199);
+}
+#user-form {
+    color: rgb(36, 36, 85);
+    margin: 8px;
+    padding: 8px;
+    border-style: solid;
+    border-width: 8px;
+    border-radius: 8px;
+    width: 300px;
+    background-color: rgb(117, 164, 208);
+}
+
+#etiqueta{
+    background-color: blueviolet;
+    color: brown;
+}
+
+#boton{
+    background-color: blueviolet;
+    color: brown;
+}
+#user-list{
+    color: black;
+    margin: 8px;
+    padding: 8px;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 8px;
+    width: 300px;
+}
+
+#result{
+    color: rgb(57, 39, 17);
+    margin: 8px;
+    padding: 8px;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 8px;
+    width: 300px;
+}
+
+#prueba{
+    color: brown;
+    margin: 8px;
+    padding: 8px;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 8px;
+    width: 300px;
+}
+.caja{
+    margin:8px;
+    padding:8px;
+    border-style: solid;
+    border-width: 8px;
+    border-color: rgb(45, 52, 177);
+    border-radius: 12px;
+}
+
+.cajon{
+    margin: 8px;
+    padding: 8px;
+}

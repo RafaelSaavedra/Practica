@@ -1,20 +1,20 @@
 
 const loadInitialTemplate = () => {
     const template = `
-    <h1> The Rock-paper-scissors-spock-lizard API</h1>
+    <h1 class="caja"> The Rock-paper-scissors-spock-lizard API</h1>
     <form id= "user-form">
         <div>
-            <label>Players´ Name :  </label>
-            <Input name = "name" />
+            <label class="etiqueta">Players´ Name :  </label>
+            <Input class="boton" name = "name" />
         </div>
         <br/>
         <div>
-            <label>Player´s Option : </label>
-            <Input name = "option" />
+            <label class="etiqueta">Player´s Option : </label>
+            <Input class="boton" name = "option" />
         </div>
        <br/>
 
-        <button type ="submit">Enviar</button>
+        <button class="boton" type ="submit">Enviar</button>
 
     </form>
     <ul id="user-list"></ul>
@@ -33,7 +33,7 @@ const getUsers = async () => {
     console.log("de getusers: nombre, opción e id",play)// De getUsers AQUI OBTIENES NOMBRE, OPCIÓN Y ID YA REGISTRADO EN MONGO
     const template = user => `
     <li>
-        ${user.name} Escogió :  ${user.option} <button data-id="${user._id}">Eliminar</button>
+        ${user.name} Escogió :  ${user.option} <button class="boton" data-id="${user._id}">Eliminar</button>
     </li>
     `
 
@@ -73,7 +73,7 @@ const getUsuarios = () => {
         Usuario escogió :  ${pley.player}<br/>
         Computadora escogió : ${pley.computer}<br/>
         Resultado del juego : ${pley.result}<br/>
-        <button data-id="${pley._id}">Eliminar</button>
+        <button class="boton" data-id="${pley._id}">Eliminar</button>
     </li>
     `
     const userList = document.getElementById('prueba')
@@ -94,7 +94,7 @@ const getResults = async () => {
        Player option : ${user.option} <br/> 
        Computer option : ${play.computer} <br/> 
        Result : ${user.result} <br/> 
-       <button data-id="${user._id}">Eliminar</button><br/><br/>
+       <button class="boton" data-id="${user._id}">Eliminar</button><br/><br/>
     </li>
     `
 
